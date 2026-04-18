@@ -15,6 +15,7 @@
     "./style.css": "./dist/style.css"
   },
   "scripts": {
+    "test": "echo \"No tests yet\"",
     "build": "rollup -c rollup.config.js"
   },
   "keywords": ["slider", "carousel", "swipe", "thumbnail", "lazy-load", "responsive"],
