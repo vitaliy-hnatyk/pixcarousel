@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build & Verify
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check (TypeScript)
+        run: npx tsc --noEmit
+
+      - name: Build (Rollup)
+        run: npm run build
+
+      - name: Verify build artifacts
+        run: |
+          set -e
+          echo "Checking generated files in dist/..."
+          test -f dist/pixcarousel.esm.js || (echo "Missing dist/pixcarousel.esm.js" && exit 1)
+          test -f dist/pixcarousel.cjs.js || (echo "Missing dist/pixcarousel.cjs.js" && exit 1)
+          test -f dist/pixcarousel.umd.js || (echo "Missing dist/pixcarousel.umd.js" && exit 1)
+          test -f dist/style.css || (echo "Missing dist/style.css" && exit 1)
+          ls -lh dist/
+
+      - name: Dry-run npm pack
+        run: npm pack --dry-run
+
+      - name: Upload build artifacts
+        if: matrix.node-version == '20.x'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7

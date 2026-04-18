@@ -1,4 +1,7 @@
 # PixCarousel
+![Node.js](https://img.shields.io/badge/Node.js-Project-green?logo=nodedotjs)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow?logo=javascript)](https://github.com/vitaliy-hnatyk/pixcarousel)
+[![CI](https://github.com/vitaliy-hnatyk/pixcarousel/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vitaliy-hnatyk/pixcarousel/actions/workflows/ci.yml)
 
 A responsive slide viewer with swipeable thumbnail rail, lazy loading, keyboard navigation and full touch support. Zero dependencies.
 
