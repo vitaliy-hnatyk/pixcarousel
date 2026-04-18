@@ -1,12 +1,16 @@
 {
   "name": "pixcarousel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A responsive slide viewer with swipeable thumbnail rail, lazy loading and touch support. Zero dependencies.",
   "main": "dist/pixcarousel.cjs.js",
   "module": "dist/pixcarousel.esm.js",
   "browser": "dist/pixcarousel.umd.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "src", "README.md"],
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
   "exports": {
     ".": {
       "import": "./dist/pixcarousel.esm.js",
@@ -18,7 +22,14 @@
     "test": "echo \"No tests yet\"",
     "build": "rollup -c rollup.config.mjs"
   },
-  "keywords": ["slider", "carousel", "swipe", "thumbnail", "lazy-load", "responsive"],
+  "keywords": [
+    "slider",
+    "carousel",
+    "swipe",
+    "thumbnail",
+    "lazy-load",
+    "responsive"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",
